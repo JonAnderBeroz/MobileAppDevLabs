@@ -3,17 +3,19 @@ package rgu.ac.wheaterforecast;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SelectLocationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SelectLocationFragment extends Fragment {
+public class SelectLocationFragment extends Fragment implements  View.OnClickListener  {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +61,16 @@ public class SelectLocationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_select_location, container, false);
+        View v = inflater.inflate(R.layout.fragment_select_location, container, false);
+        Button getForecastButton = v.findViewById(R.id.bt_getForecast);
+        getForecastButton.setOnClickListener(this);
+        return v;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.bt_getForecast){
+            Navigation.findNavController(v).navigate(R.id.action_selectLocationFragment_to_forecastFragment);
+        }
     }
 }
